@@ -1,1 +1,96 @@
 # profile_project
+### Описание:
+Profile API - проект личного кабинета пользователя
+
+### Технологии:
+
+[![name badge](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![name badge](https://img.shields.io/badge/Django-3776AB?logo=django&logoColor=white)](https://docs.djangoproject.com/en/4.2/releases/3.2/)
+[![name badge](https://img.shields.io/badge/Django_REST_framework-3776AB?logo=djangorestramework&logoColor=white)](https://www.django-rest-framework.org/)
+
+### Как запустить проект локально:
+
+Клонировать репозиторий и перейти в него в командной строке:
+
+```
+git clone https://github.com/Anna9449/profile_project.git
+```
+
+```
+cd profile_project
+```
+Cоздать и активировать виртуальное окружение:
+
+```
+python3 -m venv env
+```
+
+* Если у вас Linux/macOS
+
+    ```
+    source env/bin/activate
+    ```
+
+* Если у вас windows
+
+    ```
+    source env/scripts/activate
+    ```
+
+```
+python3 -m pip install --upgrade pip
+```
+Установить зависимости из файла requirements.txt:
+
+```
+pip install -r requirements.txt
+```
+
+Выполнить миграции:
+
+```
+python3 manage.py migrate
+```
+Создать файл .env и заполните его своими данными, пример: 
+
+```
+SECRET_KEY=*** # Секретный ключ Django (без кавычек)
+DEBUG=True # Выбрать режим отладки
+ALLOWED_HOSTS=*** # Список разрешённых хостов (через запятую и без пробелов)
+SQLITE_DB = db.sqlite3
+```
+
+Запустить проект:
+
+```
+python3 manage.py runserver
+```
+Во втором окне терминала устанавливаем и запускаем запускаем redis:
+* Если у вас macOS
+
+    ```
+    brew install redis
+    ```
+
+* Если у вас Linux
+
+    ```
+    sudo apt update
+    sudo apt install redis
+    redis-server
+    ```
+
+
+В новом окне терминала запускаем запускаем celery:
+
+```
+celery -A profile_backend worker --loglevel=info
+```
+
+При запуске локально схема api доступна по адресу:
+
+* Swagger
+
+    ```
+    http://127.0.0.1:8000/api/schema/swagger-ui/
+    ```
